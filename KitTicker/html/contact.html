@@ -1,0 +1,246 @@
+<!DOCTYPE html>
+<html lang="de">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Kontakt</title>
+    <style>
+        body {
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
+    margin: 0;
+    font-family: Arial, sans-serif;
+}
+
+header {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    z-index: 1000;
+    background-color: white;
+    padding: 20px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+}
+
+.header-left {
+    display: flex;
+    align-items: center;
+}
+
+.header-center {
+    flex: 1;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.header-center form {
+    width: 100%;
+    max-width: 500px;
+}
+
+.header-right {
+    display: flex;
+    align-items: center;
+    margin-right: 20px;
+}
+
+main {
+    flex: 1;
+    padding: 20px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-top: 80px; /* Adjusted margin to ensure content doesn't go under header */
+}
+
+header img {
+    width: 150px;
+    height: auto;
+    cursor: pointer;
+}
+
+.cart-logo img {
+    width: 90px;
+    height: auto;
+    margin-right: 15px;
+    cursor: pointer;
+}
+
+.search-bar {
+    border: none;
+    border-bottom: 2px solid black;
+    outline: none;
+    padding: 5px;
+    width: 100%;
+    font-size: 16px;
+}
+
+.contact-form {
+    max-width: 700px;
+    width: 100%;
+    background-color: #f9f9f9;
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+
+.contact-form h2 {
+    margin-bottom: 20px;
+    font-size: 24px;
+}
+
+.contact-form label {
+    display: block;
+    margin-bottom: 5px;
+    font-weight: bold;
+}
+
+.contact-form input,
+.contact-form textarea {
+    width: 100%;
+    padding: 10px;
+    margin-bottom: 20px;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+}
+
+.contact-form button {
+    padding: 10px 20px;
+    background-color: black;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+footer {
+    background-color: white;
+    color: #000;
+    padding: 20px 0;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    align-items: flex-start;
+    width: 100%;
+    border-top: 1px solid #ddd;
+}
+
+.footer-section {
+    padding: 10px;
+    flex: 1;
+    min-width: 150px;
+    text-align: center;
+}
+
+.footer-bottom {
+    background-color: #fff;
+    padding: 5px 0;
+    width: 100%;
+    text-align: center;
+    color: #aaa;
+    border-top: 1px solid #ddd;
+    background-color: black;
+}
+
+.footerimage img {
+    width: 100px;
+}
+
+.social-links a {
+    margin: 0 5px;
+}
+
+.social-links img {
+    width: 30px;
+    height: auto;
+}
+
+/* Media Queries */
+@media (max-width: 768px) {
+    .header-center form {
+        max-width: 400px;
+    }
+}
+
+@media (max-width: 480px) {
+    .header-center form {
+        max-width: 300px;
+    }
+
+    .contact-form {
+        padding: 15px;
+    }
+
+    .contact-form h2 {
+        font-size: 20px;
+    }
+
+    main {
+        margin-top: 100px; /* Increase margin to prevent content from being hidden under header */
+    }
+}
+
+
+    </style>
+</head>
+
+<body>
+    <header>
+        <div class="header-left">
+            <a href="locker.html"><img src="images/logo.png" alt="Logo"></a>
+        </div>
+        <div class="header-center">
+            <form action="#" method="GET">
+                <input type="text" name="query" class="search-bar" placeholder="Suche...">
+            </form>
+        </div>
+        <div class="header-right">
+            <a href="cart.html" class="cart-logo"><img src="images/warenkorb.png" alt="Warenkorb"></a>
+        </div>
+    </header>
+    <main>
+        <form class="contact-form" action="send_contact.php" method="POST">
+            <h2>Kontaktieren Sie uns</h2>
+            <label for="name">Name:</label>
+            <input type="text" id="name" name="name" required>
+
+            <label for="email">E-Mail:</label>
+            <input type="email" id="email" name="email" required>
+
+            <label for="message">Nachricht:</label>
+            <textarea id="message" name="message" rows="6" required></textarea>
+
+            <button type="submit">Senden</button>
+        </form>
+    </main>
+    <footer>
+        <div class="footer-section social-media">
+            <h2>Folge uns</h2>
+            <div class="social-links">
+                <a href="https://twitter.com"><img src="images/twitter.jpg" alt="Twitter"></a>
+                <a href="https://www.tiktok.com"><img src="images/tiktok.jpg" alt="TikTok"></a>
+                <a href="https://www.instagram.com"><img src="images/instagram.jpg" alt="Instagram"></a>
+            </div>
+        </div>
+        <div class="footer-section contact">
+            <h2>Kontakt</h2>
+            <p>Email: info@tshirtshop.com</p>
+            <p>Service Nummer: +41 78 751 88 89</p>
+        </div>
+        <div class="footer-section payment">
+            <img src="images/Zahlungsmoeglichkeiten.png">
+        </div>
+    </footer>
+    <div class="footer-bottom">
+        &copy; 2024 Dein Shop. Alle Rechte vorbehalten.
+    </div>
+</body>
+
+</html>

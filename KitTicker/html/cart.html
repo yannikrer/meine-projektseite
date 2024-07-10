@@ -1,0 +1,354 @@
+<!DOCTYPE html>
+<html lang="de">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Warenkorb</title>
+    <style>
+        body {
+            display: flex;
+            flex-direction: column;
+            min-height: 100vh;
+            margin: 0;
+            font-family: Arial, sans-serif;
+        }
+        
+        header {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            z-index: 1000;
+            background-color: white;
+            padding: 20px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+        }
+        
+        .header-left {
+            display: flex;
+            align-items: center;
+        }
+        
+        .header-center {
+            flex: 1;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+        
+        .header-center form {
+            width: 100%;
+            max-width: 500px;
+        }
+        
+        .header-right {
+            display: flex;
+            align-items: center;
+            margin-right: 20px;
+        }
+        
+        main {
+            flex: 1;
+            padding-top: 120px;
+            display: flex;
+            justify-content: center;
+            flex-direction: column;
+            align-items: center;
+        }
+        
+        header img {
+            width: 150px;
+            height: auto;
+            cursor: pointer;
+        }
+        
+        .cart-logo img {
+            width: 90px;
+            height: auto;
+            margin-right: 15px;
+            cursor: pointer;
+        }
+        
+        .search-bar {
+            border: none;
+            border-bottom: 2px solid black;
+            outline: none;
+            padding: 5px;
+            width: 100%;
+            font-size: 16px;
+        }
+        
+        .container {
+            display: flex;
+            flex-direction: column;
+            justify-content: flex-start;
+            max-width: 80%;
+            margin: 0 auto;
+        }
+        
+        .cart-item {
+            margin: 20px 0;
+            padding: 20px;
+            display: flex;
+            align-items: center;
+            text-align: left;
+            transition: transform 0.3s;
+            border-radius: 10px;
+            background-color: #fff;
+            width: 100%;
+        }
+        
+        .cart-item img {
+            max-width: 200px;
+            height: auto;
+            margin-right: 20px;
+        }
+        
+        .cart-item-info {
+            flex-grow: 1;
+        }
+        
+        .cart-item h2,
+        .cart-item p {
+            font-size: 20px;
+            margin: 10px 0;
+        }
+        
+        .cart-item form {
+            margin-top: 10px;
+        }
+        
+        .order-info-box {
+            position: sticky;
+            top: 100px;
+            right: 20px;
+            width: 25%;
+            padding: 20px;
+            background-color: #fff;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            text-align: center;
+        }
+        
+        .order-info-box h3 {
+            font-size: 24px;
+            margin-bottom: 10px;
+        }
+        
+        .order-info-box p {
+            font-size: 20px;
+            margin-bottom: 8px;
+        }
+        
+        .order-info-box span {
+            display: block;
+            margin-bottom: 8px;
+        }
+        
+        .order-button {
+            display: block;
+            margin-top: 20px;
+            padding: 15px 30px;
+            background-color: black;
+            color: white;
+            text-align: center;
+            text-decoration: none;
+            font-size: 24px;
+            font-weight: bold;
+            cursor: pointer;
+            border-radius: 5px;
+        }
+        
+        @media (max-width: 1200px) {
+            .container {
+                max-width: 90%;
+            }
+            .order-info-box {
+                position: static;
+                width: 100%;
+                margin-top: 20px;
+            }
+            header img {
+                width: 120px;
+            }
+            .cart-logo img {
+                width: 70px;
+            }
+        }
+        
+        @media (max-width: 768px) {
+            main {
+                flex-direction: column;
+                align-items: center;
+            }
+            .container {
+                max-width: 100%;
+                padding: 0 20px;
+            }
+            header img {
+                width: 100px;
+            }
+            .cart-logo img {
+                width: 50px;
+            }
+            .order-button {
+                padding: 10px 20px;
+                font-size: 20px;
+            }
+        }
+        
+        @media (max-width: 480px) {
+            .cart-item img {
+                max-width: 150px;
+            }
+            header img {
+                width: 80px;
+            }
+            .cart-logo img {
+                width: 40px;
+            }
+            .order-button {
+                padding: 8px 16px;
+                font-size: 18px;
+            }
+        }
+        
+        footer {
+            background-color: white;
+            color: #000;
+            padding: 20px 0;
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: space-between;
+            align-items: flex-start;
+            width: 100%;
+            border-top: 1px solid #ddd;
+        }
+        
+        .footer-section {
+            padding: 10px;
+            flex: 1;
+            min-width: 150px;
+            text-align: center;
+        }
+        
+        .footer-bottom {
+            background-color: #fff;
+            padding: 5px 0;
+            width: 100%;
+            text-align: center;
+            color: #aaa;
+            border-top: 1px solid #ddd;
+            background-color: black;
+        }
+        
+        .footerimage img {
+            width: 100px;
+        }
+        
+        .social-links a {
+            margin: 0 5px;
+        }
+        
+        .social-links img {
+            width: 30px;
+            height: auto;
+        }
+    </style>
+    <script>
+        function loadCart() {
+            let cart = JSON.parse(localStorage.getItem('cart')) || [];
+            const container = document.querySelector('.container');
+            const orderInfoBox = document.querySelector('.order-info-box');
+            let totalItems = 0;
+            let totalPrice = 0;
+
+            container.innerHTML = '';
+            if (cart.length === 0) {
+                container.innerHTML = '<p>Keine Artikel im Warenkorb.</p>';
+            } else {
+                cart.forEach(cartItem => {
+                    const item = document.createElement('div');
+                    item.classList.add('cart-item');
+                    item.innerHTML = `
+                        <img src="${cartItem.image}" alt="${cartItem.name}">
+                        <div class="cart-item-info">
+                            <h2>${cartItem.name}</h2>
+                            <p>Menge: ${cartItem.quantity}</p>
+                            <p>Preis: ${cartItem.price}€</p>
+                            <button onclick="removeFromCart('${cartItem.id}')">Entfernen</button>
+                        </div>
+                    `;
+                    container.appendChild(item);
+
+                    totalItems += cartItem.quantity;
+                    totalPrice += cartItem.quantity * cartItem.price;
+                });
+            }
+
+            orderInfoBox.querySelector('p:nth-child(2)').innerText = `Anzahl Produkte: ${totalItems}`;
+            orderInfoBox.querySelector('p:nth-child(3)').innerText = `Gesamtpreis: ${totalPrice.toFixed(2)}€`;
+        }
+
+        function removeFromCart(id) {
+            let cart = JSON.parse(localStorage.getItem('cart')) || [];
+            cart = cart.filter(item => item.id !== id);
+            localStorage.setItem('cart', JSON.stringify(cart));
+            loadCart();
+        }
+
+        document.addEventListener('DOMContentLoaded', loadCart);
+    </script>
+</head>
+
+<body>
+    <header>
+        <div class="header-left">
+            <a href="locker.html"><img src="images/logo.png" alt="Logo"></a>
+        </div>
+        <div class="header-center">
+            <form action="#" method="GET">
+                <input type="text" name="query" class="search-bar" placeholder="Suche...">
+            </form>
+        </div>
+        <div class="header-right">
+            <a href="cart.html" class="cart-logo"><img src="images/warenkorb.png" alt="Warenkorb"></a>
+        </div>
+    </header>
+    <main>
+        <div class="container"></div>
+        <div class="order-info-box">
+            <h3>Bestellungsübersicht</h3>
+            <p>Anzahl Produkte: 0</p>
+            <p>Gesamtpreis: 0,00€</p>
+            <span>Alle Preise inkl. MwSt.</span>
+            <a href="order.html" class="order-button">Zur Bestellung</a>
+        </div>
+    </main>
+    <footer>
+        <div class="footer-section social-media">
+            <h2>Folge uns</h2>
+            <div class="social-links">
+                <a href="https://twitter.com"><img src="images/twitter.jpg" alt="Twitter"></a>
+                <a href="https://www.tiktok.com"><img src="images/tiktok.jpg" alt="TikTok"></a>
+                <a href="https://www.instagram.com"><img src="images/instagram.jpg" alt="Instagram"></a>
+            </div>
+        </div>
+        <div class="footer-section contact">
+            <h2>Kontakt</h2>
+            <p>Email: info@tshirtshop.com</p>
+            <p>Service Nummer: +41 78 751 88 89</p>
+        </div>
+        <div class="footer-section payment">
+            <img src="images/Zahlungsmoeglichkeiten.png" alt="Zahlungsmöglichkeiten">
+        </div>
+    </footer>
+    <div class="footer-bottom">
+        &copy; 2024 Dein Shop. Alle Rechte vorbehalten.
+    </div>
+</body>
+
+</html>
