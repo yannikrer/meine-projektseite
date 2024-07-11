@@ -80,7 +80,7 @@
             padding: 5px;
             width: 100%;
             font-size: 16px;
-            max-width: 500px; /* Begrenzung der Suchleiste auf maximal 500px Breite */
+            max-width: 500px;
         }
 
         .container {
@@ -89,7 +89,7 @@
             justify-content: space-between;
             max-width: 1600px;
             margin: 0 auto;
-            padding: 0 20px; /* Außenabstand für den Inhalt hinzugefügt */
+            padding: 0 20px;
         }
 
         .shirt-item {
@@ -249,6 +249,53 @@
             font-weight: bold;
         }
 
+        .order-summary {
+            text-align: right;
+            margin-top: 20px;
+            border-top: 1px solid #ddd;
+            padding-top: 20px;
+        }
+
+        .finish-order-btn {
+            background-color: #000;
+            color: #fff;
+            padding: 10px 20px;
+            border: none;
+            cursor: pointer;
+            font-size: 16px;
+            transition: background-color 0.3s;
+        }
+
+        .finish-order-btn:hover {
+            background-color: #333;
+        }
+
+        @media (max-width: 768px) {
+            .cart-item {
+                flex-direction: column;
+                align-items: center;
+                text-align: center;
+            }
+
+            .cart-item img {
+                margin-bottom: 10px;
+            }
+
+            .cart-item-quantity {
+                justify-content: center;
+            }
+
+            .total-price,
+            .order-summary {
+                text-align: center;
+            }
+
+            .finish-order-btn {
+                width: 100%;
+                box-sizing: border-box;
+            }
+        }
+
         @media (max-width: 480px) {
             header img {
                 width: 120px;
@@ -280,35 +327,29 @@
         <div class="cart-container">
             <h1>Warenkorb</h1>
             <div id="cart-items"></div>
-            <p class="total-price" id="total-price"></p>
+            <div class="order-summary">
+                <p class="total-price" id="total-price"></p>
+                <button class="finish-order-btn">Finish Order</button>
+            </div>
         </div>
     </main>
 
     <footer>
-        <div class="footer-section">
-            <h3>About Us</h3>
-            <p>Information about the company.</p>
-        </div>
-        <div class="footer-section">
-            <h3>Contact</h3>
-            <p>Email: info@example.com</p>
-        </div>
-        <div class="footer-section footerimage">
-            <img src="images/Original-Logo.png" alt="Logo">
-        </div>
-        <div class="footer-section">
-            <h3>Follow Us</h3>
+        <div class="footer-section social-media">
+            <h2>Folge uns</h2>
             <div class="social-links">
-                <a href="#"><img src="images/facebook.png" alt="Facebook"></a>
-                <a href="#"><img src="images/instagram.png" alt="Instagram"></a>
-                <a href="#"><img src="images/twitter.png" alt="Twitter"></a>
+                <a href="https://twitter.com"><img src="images/twitter.jpg" alt="Twitter"></a>
+                <a href="https://www.tiktok.com"><img src="images/tiktok.jpg" alt="TikTok"></a>
+                <a href="https://www.instagram.com"><img src="images/instagram.jpg" alt="Instagram"></a>
             </div>
         </div>
-        <div class="footer-section payment">
-            <img src="images/payment_methods.png" alt="Payment Methods">
+        <div class="footer-section contact">
+            <h2>Kontakt</h2>
+            <p>Email: info@tshirtshop.com</p>
+            <p>Service Nummer: +41 78 751 88 89</p>
         </div>
-        <div class="footer-bottom">
-            <p>&copy; 2023 Your Company. All rights reserved.</p>
+        <div class="footer-section payment">
+            <img src="images/Zahlungsmoeglichkeiten.png">
         </div>
     </footer>
 
@@ -331,7 +372,7 @@
                         <div class="cart-item-quantity">
                             <label for="quantity-${item.id}-${item.size}">Menge:</label>
                             <input type="number" id="quantity-${item.id}-${item.size}" value="${item.quantity}" min="1" onchange="updateQuantity('${item.id}', '${item.size}', this.value)">
-                            <span class="remove-item" onclick="removeItem('${item.id}', '${item.size}')">Entfernen</span>
+                            <span class="remove-item" onclick="removeItem('${item.id}', '${item.size}', this.parentNode.parentNode.parentNode)">Entfernen</span>
                         </div>
                     </div>
                 `;
@@ -350,12 +391,12 @@
                 }
             };
 
-            window.removeItem = (id, size) => {
+            window.removeItem = (id, size, cartItemElement) => {
                 const itemIndex = cart.findIndex(item => item.id === id && item.size === size);
                 if (itemIndex > -1) {
                     cart.splice(itemIndex, 1);
                     localStorage.setItem('cart', JSON.stringify(cart));
-                    cartItemsContainer.removeChild(cartItemsContainer.childNodes[itemIndex]);
+                    cartItemsContainer.removeChild(cartItemElement);
                     updateTotalPrice();
                 }
             };
