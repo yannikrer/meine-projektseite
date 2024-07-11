@@ -5,6 +5,6 @@ function SendMail() {
         message : document.getElementById("message").value
     }
     emailjs.send("service_vgzvb3h", "template_uu1wour", params).then(function (res) {
-        alert("Succes " + res.status)
+        alert("Deine Email wurde erfolgreich versendet... " + res.status)
     })
 }
