@@ -322,7 +322,6 @@
                 <div class="product-info">
                     <h1 id="shirt-name"></h1>
                     <p><strong>Preis:</strong> <span id="shirt-price"></span></p>
-                    <p id="shirt-description"></p>
                     <p><strong>Bewertungsanzahl:</strong> 23</p>
                     <p><strong>Marke:</strong> <span id="shirt-brand"></span></p>
                     <p><strong>Liga:</strong> <span id="shirt-league"></span></p>
@@ -365,45 +364,66 @@
 
     <script>
         document.addEventListener('DOMContentLoaded', () => {
-            const selectedShirt = JSON.parse(localStorage.getItem('selectedShirt'));
+    const selectedShirt = JSON.parse(localStorage.getItem('selectedShirt'));
 
-            if (selectedShirt) {
-                document.getElementById('shirt-image').src = selectedShirt.image;
-                document.getElementById('shirt-name').textContent = selectedShirt.name;
-                document.getElementById('shirt-price').textContent = selectedShirt.price + '€';
-                document.getElementById('shirt-description').textContent = selectedShirt.description;
-                document.getElementById('shirt-brand').textContent = selectedShirt.brand;
-                document.getElementById('shirt-league').textContent = selectedShirt.league;
-            }
-        });
+    if (selectedShirt) {
+        document.getElementById('shirt-image').src = selectedShirt.image;
+        document.getElementById('shirt-name').textContent = selectedShirt.name;
+        document.getElementById('shirt-price').textContent = selectedShirt.price + '€';
+        document.getElementById('shirt-description').textContent = selectedShirt.description;
+        document.getElementById('shirt-brand').textContent = selectedShirt.brand;
+        document.getElementById('shirt-league').textContent = selectedShirt.league;
 
-        function selectSize(size) {
-            document.getElementById('size').value = size;
-            const buttons = document.querySelectorAll('.size-button');
-            buttons.forEach(button => button.classList.remove('selected'));
-            document.getElementById('size-button-' + size).classList.add('selected');
+        // Diashow für das Hintergrundbild
+        const imageBack = document.querySelector('.shirt-item .bild2');
+        let currentImageIndex = 0;
+        const imageBackUrls = [selectedShirt.imageBack, "images/example2.jpg", "images/example3.jpg"]; // Hier die URLs der Bilder eintragen
+
+        function startSlideshow() {
+            setInterval(changeImage, 3000); // Bilder alle 3 Sekunden wechseln
         }
 
-        function addToCart() {
-            const form = document.getElementById('add-to-cart-form');
-            const formData = new FormData(form);
-
-            const shirt = JSON.parse(localStorage.getItem('selectedShirt'));
-            shirt.size = formData.get('size');
-            shirt.quantity = parseInt(formData.get('quantity'), 10);
-
-            let cart = JSON.parse(localStorage.getItem('cart')) || [];
-            const existingItemIndex = cart.findIndex(item => item.id === shirt.id && item.size === shirt.size);
-
-            if (existingItemIndex > -1) {
-                cart[existingItemIndex].quantity += shirt.quantity;
-            } else {
-                cart.push(shirt);
-            }
-
-            localStorage.setItem('cart', JSON.stringify(cart));
-            alert('Das Produkt wurde dem Warenkorb hinzugefügt.');
+        function changeImage() {
+            imageBack.style.opacity = 0;
+            setTimeout(() => {
+                currentImageIndex = (currentImageIndex + 1) % imageBackUrls.length;
+                imageBack.src = imageBackUrls[currentImageIndex];
+                imageBack.style.opacity = 1;
+            }, 500); // Übergangseffekt: Halbe Sekunde für den Übergang
         }
+
+        startSlideshow();
+    }
+});
+
+function selectSize(size) {
+    document.getElementById('size').value = size;
+    const buttons = document.querySelectorAll('.size-button');
+    buttons.forEach(button => button.classList.remove('selected'));
+    document.getElementById('size-button-' + size).classList.add('selected');
+}
+
+function addToCart() {
+    const form = document.getElementById('add-to-cart-form');
+    const formData = new FormData(form);
+
+    const shirt = JSON.parse(localStorage.getItem('selectedShirt'));
+    shirt.size = formData.get('size');
+    shirt.quantity = parseInt(formData.get('quantity'), 10);
+
+    let cart = JSON.parse(localStorage.getItem('cart')) || [];
+    const existingItemIndex = cart.findIndex(item => item.id === shirt.id && item.size === shirt.size);
+
+    if (existingItemIndex > -1) {
+        cart[existingItemIndex].quantity += shirt.quantity;
+    } else {
+        cart.push(shirt);
+    }
+
+    localStorage.setItem('cart', JSON.stringify(cart));
+    alert('Das Produkt wurde dem Warenkorb hinzugefügt.');
+}
+
     </script>
 </body>
 

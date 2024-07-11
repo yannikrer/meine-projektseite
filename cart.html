@@ -4,14 +4,24 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Warenkorb</title>
+    <title>Dein Warenkorb</title>
     <style>
+        /* Globale Styles */
         body {
             display: flex;
             flex-direction: column;
             min-height: 100vh;
             margin: 0;
             font-family: Arial, sans-serif;
+        }
+
+        .container {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 20px;
         }
 
         header {
@@ -28,9 +38,10 @@
             box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
         }
 
-        .header-left {
-            display: flex;
-            align-items: center;
+        .header-left img {
+            width: 150px;
+            height: auto;
+            cursor: pointer;
         }
 
         .header-center {
@@ -40,30 +51,20 @@
             align-items: center;
         }
 
-        .header-center form {
+        .search-bar {
+            border: none;
+            border-bottom: 2px solid black;
+            outline: none;
+            padding: 5px;
             width: 100%;
-            max-width: 500px;
+            font-size: 16px;
+            max-width: 500px; /* Begrenzung der Suchleiste auf maximal 500px Breite */
         }
 
         .header-right {
             display: flex;
             align-items: center;
             margin-right: 20px;
-        }
-
-        main {
-            flex: 1;
-            padding-top: 120px;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            width: 100%;
-        }
-
-        header img {
-            width: 150px;
-            height: auto;
-            cursor: pointer;
         }
 
         .cart-logo img {
@@ -73,64 +74,67 @@
             cursor: pointer;
         }
 
-        .search-bar {
-            border: none;
-            border-bottom: 2px solid black;
-            outline: none;
-            padding: 5px;
+        main {
+            flex: 1;
+            padding-top: 120px;
             width: 100%;
-            font-size: 16px;
-            max-width: 500px;
         }
 
-        .container {
+        .cart-items {
+            width: 100%;
+            max-width: 800px;
+        }
+
+        .cart-item {
             display: flex;
-            flex-wrap: wrap;
-            justify-content: space-between;
-            max-width: 1600px;
-            margin: 0 auto;
-            padding: 0 20px;
+            align-items: center;
+            border-bottom: 1px solid #ddd;
+            padding: 10px;
         }
 
-        .shirt-item {
-            margin: 10px;
-            padding: 10px;
-            width: 23%;
+        .cart-item img {
+            width: 80px;
+            height: auto;
+            margin-right: 20px;
+        }
+
+        .cart-item-info {
+            flex: 1;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .cart-item-info p {
+            margin: 5px 0;
+        }
+
+        .quantity-input {
+            width: 50px;
+            margin: 0 10px;
             text-align: center;
-            transition: transform 0.3s;
-            position: relative;
+        }
+
+        .remove-button {
+            background-color: #f44336;
+            color: white;
+            border: none;
+            padding: 5px 10px;
+            margin-left: 10px;
             cursor: pointer;
         }
 
-        .shirt-item:hover {
-            transform: scale(1.05);
-        }
-
-        .shirt-item img {
-            max-width: 100%;
-            height: auto;
-            display: block;
-        }
-
-        .shirt-item .bild2 {
-            position: absolute;
-            top: 0;
-            left: 0;
+        .total-section {
+            margin-top: 20px;
+            text-align: right;
+            padding: 20px;
+            border-top: 1px solid #ddd;
             width: 100%;
-            height: 100%;
-            opacity: 0;
-            transition: opacity 0.3s;
+            max-width: 800px;
         }
 
-        .shirt-item:hover .bild2 {
-            opacity: 1;
-        }
-
-        .shirt-item h2,
-        .shirt-item p {
-            margin: 10px 0;
-            position: relative;
-            z-index: 1;
+        .total-section p {
+            margin: 5px 0;
         }
 
         footer {
@@ -144,14 +148,14 @@
             width: 100%;
             border-top: 1px solid #ddd;
         }
-
+        
         .footer-section {
             padding: 10px;
             flex: 1;
             min-width: 150px;
             text-align: center;
         }
-
+        
         .footer-bottom {
             background-color: #fff;
             padding: 5px 0;
@@ -161,138 +165,146 @@
             border-top: 1px solid #ddd;
             background-color: black;
         }
-
+        
         .footerimage img {
             width: 100px;
         }
-
+        
         .social-links a {
             margin: 0 5px;
         }
-
+        
         .social-links img {
             width: 30px;
             height: auto;
         }
-
+        
         ul {
             list-style-type: none;
             padding: 0;
             margin: 0;
         }
-
+        
         ul a {
             padding: 5px 10px;
             text-decoration: none;
             color: #000;
             font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
         }
-
+        
+        .payment img {
+            width: 50%;
+            height: auto;
+            margin-top: 20px;
+        }
+        s
         .payment img {
             width: 50%;
             height: auto;
             margin-top: 20px;
         }
 
-        .cart-container {
+        .product-details {
+            display: flex;
             max-width: 1200px;
             width: 100%;
+            flex-direction: row;
+            padding: 20px; /* Innenabstand für den Produktbereich hinzugefügt */
+            box-sizing: border-box; /* Box-Sizing zur Berücksichtigung von Padding und Border hinzugefügt */
+        }
+
+        .product-image {
             padding: 20px;
-            box-sizing: border-box;
-        }
-
-        .cart-item {
-            display: flex;
-            margin-bottom: 20px;
-            border-bottom: 1px solid #ddd;
-            padding-bottom: 10px;
-        }
-
-        .cart-item img {
-            width: 100px;
-            height: auto;
-            margin-right: 20px;
-        }
-
-        .cart-item-details {
+            text-align: center;
             flex: 1;
         }
 
-        .cart-item-details h3 {
-            margin: 0;
-            font-size: 18px;
+        .product-image img {
+            max-width: 100%;
+            height: auto;
         }
 
-        .cart-item-details p {
+        .product-info {
+            padding: 20px;
+            text-align: left;
+            flex: 1;
+        }
+
+        .product-info h1 {
+            font-size: 24px;
+            margin-bottom: 20px;
+        }
+
+        .product-info p {
             margin: 5px 0;
         }
 
-        .cart-item-quantity {
+        .size-buttons {
             display: flex;
-            align-items: center;
+            flex-wrap: wrap;
+            margin: 10px 0;
         }
 
-        .cart-item-quantity input {
-            width: 50px;
-            margin-left: 10px;
-        }
-
-        .remove-item {
+        .size-button {
+            padding: 10px 20px;
+            margin: 5px;
+            background-color: #f0f0f0;
+            border: 1px solid #ddd;
             cursor: pointer;
-            color: red;
-            margin-left: 20px;
         }
 
-        .total-price {
-            text-align: right;
-            font-size: 20px;
-            font-weight: bold;
-        }
-
-        .order-summary {
-            text-align: right;
-            margin-top: 20px;
-            border-top: 1px solid #ddd;
-            padding-top: 20px;
-        }
-
-        .finish-order-btn {
+        .size-button.selected {
             background-color: #000;
             color: #fff;
-            padding: 10px 20px;
-            border: none;
-            cursor: pointer;
-            font-size: 16px;
-            transition: background-color 0.3s;
         }
 
-        .finish-order-btn:hover {
-            background-color: #333;
+        .add-to-cart {
+            margin-top: 20px;
+            display: block;
+            padding: 10px 20px;
+            background-color: black;
+            color: white;
+            text-align: center;
+            text-decoration: none;
+            font-weight: bold;
+            cursor: pointer;
+        }
+
+        @media (max-width: 1200px) {
+            .shirt-item {
+                width: 100%;
+                max-width: 600px;
+                margin: 20px auto;
+            }
         }
 
         @media (max-width: 768px) {
-            .cart-item {
-                flex-direction: column;
-                align-items: center;
-                text-align: center;
+            .header-left img {
+                width: 100px; /* Kleinere Logogröße */
             }
 
-            .cart-item img {
-                margin-bottom: 10px;
+            .search-bar {
+                max-width: 100%; /* Suchleiste über die gesamte Breite */
             }
 
-            .cart-item-quantity {
-                justify-content: center;
+            .shirt-item {
+                width: 100%; /* Über die gesamte Breite */
+                max-width: 100%; /* Maximalbreite entfernen */
+                margin: 10px auto;
             }
 
-            .total-price,
-            .order-summary {
-                text-align: center;
+            .product-details {
+                flex-direction: column; /* Auf mobilen Geräten vertikal anordnen */
+                padding: 10px; /* Innerer Abstand reduziert */
             }
 
-            .finish-order-btn {
-                width: 100%;
-                box-sizing: border-box;
+            .footer-section {
+                text-align: center; /* Zentrierte Fußzeile */
+                margin-bottom: 20px;
+            }
+
+            .social-links a {
+                margin: 5px; /* Kleinerer Abstand zwischen den Social Media Icons */
             }
         }
 
@@ -303,6 +315,16 @@
 
             .cart-logo img {
                 width: 70px;
+            }
+
+            .product-details {
+                flex-direction: column;
+                padding: 10px; /* Innenabstand verringert, um den Platz auf kleineren Bildschirmen besser zu nutzen */
+            }
+
+            .product-image,
+            .product-info {
+                width: 100%;
             }
         }
     </style>
@@ -322,14 +344,17 @@
             <a href="cart.html" class="cart-logo"><img src="images/warenkorb.png" alt="Warenkorb"></a>
         </div>
     </header>
+    
 
     <main>
-        <div class="cart-container">
-            <h1>Warenkorb</h1>
-            <div id="cart-items"></div>
-            <div class="order-summary">
-                <p class="total-price" id="total-price"></p>
-                <button class="finish-order-btn">Finish Order</button>
+        <div class="container">
+            <div class="cart-items">
+                <!-- Hier werden die Warenkorb-Elemente dynamisch eingefügt -->
+            </div>
+            <div class="total-section">
+                <h2>Gesamtsumme</h2>
+                <p id="total-price"></p>
+                <button class="checkout-button" onclick="checkout()">Zur Kasse gehen</button>
             </div>
         </div>
     </main>
@@ -352,81 +377,80 @@
             <img src="images/Zahlungsmoeglichkeiten.png" alt="Zahlungsmöglichkeiten">
         </div>
     </footer>
-    
+
+    <div class="footer-bottom">
+        &copy; 2024 Dein Shop. Alle Rechte vorbehalten.
+    </div>
 
     <script>
         document.addEventListener('DOMContentLoaded', () => {
-    const cart = JSON.parse(localStorage.getItem('cart')) || [];
-    const cartItemsContainer = document.getElementById('cart-items');
-    const totalPriceElement = document.getElementById('total-price');
+            // Laden des Warenkorbs aus dem Local Storage
+            const cart = JSON.parse(localStorage.getItem('cart')) || [];
 
-    // Funktion zum Rendern des Warenkorbs
-    function renderCart() {
-        cartItemsContainer.innerHTML = ''; // Zurücksetzen des Inhalts, um neu zu rendern
+            // Funktion zur Anzeige der Warenkorb-Elemente
+            function displayCartItems() {
+                const cartContainer = document.querySelector('.cart-items');
+                cartContainer.innerHTML = '';
 
-        cart.forEach(item => {
-            const cartItem = document.createElement('div');
-            cartItem.className = 'cart-item';
+                cart.forEach(item => {
+                    const cartItem = document.createElement('div');
+                    cartItem.classList.add('cart-item');
+                    cartItem.innerHTML = `
+                        <img src="${item.image}" alt="${item.name}">
+                        <div class="cart-item-info">
+                            <div>
+                                <h3>${item.name}</h3>
+                                <p>Größe: ${item.size}</p>
+                                <p>Preis pro Stück: ${item.price}€</p>
+                            </div>
+                            <div class="cart-item-actions">
+                                <input type="number" class="quantity-input" value="${item.quantity}" min="1" onchange="updateQuantity(${item.id}, this.value)">
+                                <button class="remove-button" onclick="removeFromCart(${item.id})">Entfernen</button>
+                            </div>
+                        </div>
+                    `;
+                    cartContainer.appendChild(cartItem);
+                });
 
-            cartItem.innerHTML = `
-                <img src="${item.image}" alt="${item.name}">
-                <div class="cart-item-details">
-                    <h3>${item.name}</h3>
-                    <p>Größe: ${item.size}</p>
-                    <p>Preis: ${item.price}€</p>
-                    <div class="cart-item-quantity">
-                        <label for="quantity-${item.id}-${item.size}">Menge:</label>
-                        <input type="number" id="quantity-${item.id}-${item.size}" value="${item.quantity}" min="1" onchange="updateQuantity('${item.id}', '${item.size}', this.value)">
-                        <span class="remove-item" data-id="${item.id}" data-size="${item.size}">Entfernen</span>
-                    </div>
-                </div>
-            `;
+                // Anzeige der Gesamtsumme
+                displayTotal();
+            }
 
-            cartItemsContainer.appendChild(cartItem);
+            // Funktion zum Entfernen eines Artikels aus dem Warenkorb
+            window.removeFromCart = function (itemId) {
+                const itemIndex = cart.findIndex(item => item.id === itemId);
+                if (itemIndex !== -1) {
+                    cart.splice(itemIndex, 1);
+                    localStorage.setItem('cart', JSON.stringify(cart));
+                    displayCartItems();
+                }
+            };
+
+            // Funktion zur Aktualisierung der Artikelmenge im Warenkorb
+            window.updateQuantity = function (itemId, newQuantity) {
+                const itemIndex = cart.findIndex(item => item.id === itemId);
+                if (itemIndex !== -1) {
+                    cart[itemIndex].quantity = parseInt(newQuantity, 10);
+                    localStorage.setItem('cart', JSON.stringify(cart));
+                    displayTotal();
+                }
+            };
+
+            // Funktion zur Anzeige der Gesamtsumme
+            function displayTotal() {
+                const totalPrice = cart.reduce((total, item) => total + (item.price * item.quantity), 0);
+                document.getElementById('total-price').textContent = `Gesamt: ${totalPrice.toFixed(2)}€`;
+            }
+
+            // Funktion für den Checkout
+            window.checkout = function () {
+                alert('Zur Kasse gehen!');
+                // Hier könnten weitere Logiken für den Checkout implementiert werden
+            };
+
+            // Initialisierung der Warenkorb-Anzeige
+            displayCartItems();
         });
-
-        updateTotalPrice();
-    }
-
-    // Event Delegation für das Entfernen von Artikeln
-    cartItemsContainer.addEventListener('click', event => {
-        if (event.target.classList.contains('remove-item')) {
-            const id = event.target.getAttribute('data-id');
-            const size = event.target.getAttribute('data-size');
-            removeItem(id, size);
-        }
-    });
-
-    // Funktion zum Aktualisieren der Gesamtsumme
-    function updateTotalPrice() {
-        const total = cart.reduce((sum, item) => sum + (item.price * item.quantity), 0);
-        totalPriceElement.textContent = `Gesamtpreis: ${total.toFixed(2)}€`;
-    }
-
-    // Funktion zum Aktualisieren der Menge eines Artikels
-    window.updateQuantity = (id, size, quantity) => {
-        const itemIndex = cart.findIndex(item => item.id === id && item.size === size);
-        if (itemIndex > -1) {
-            cart[itemIndex].quantity = parseInt(quantity, 10);
-            localStorage.setItem('cart', JSON.stringify(cart));
-            renderCart(); // Warenkorb neu rendern nach Änderung
-        }
-    };
-
-    // Funktion zum Entfernen eines Artikels aus dem Warenkorb
-    function removeItem(id, size) {
-        const itemIndex = cart.findIndex(item => item.id === id && item.size === size);
-        if (itemIndex > -1) {
-            cart.splice(itemIndex, 1);
-            localStorage.setItem('cart', JSON.stringify(cart));
-            renderCart(); // Warenkorb neu rendern nach Entfernung
-        }
-    }
-
-    // Initialen Warenkorb rendern
-    renderCart();
-});
-
     </script>
 </body>
 
