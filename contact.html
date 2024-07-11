@@ -233,18 +233,20 @@
 
         /* Media Query für responsives Verhalten */
 
-        @media (max-width: 768px) {
-            .input-container {
-                padding: 10px; /* Kleinere Polsterung für bessere Darstellung auf kleinen Bildschirmen */
-                margin-top: 60px; /* Weniger Abstand zum Header bei kleineren Bildschirmen */
-            }
+        main {
+    flex: 1;
+    padding-top: 160px; /* Anpassung des oberen Abstands */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+}
 
-            .input-container input[type="text"],
-            .input-container input[type="email"],
-            .input-container textarea {
-                width: calc(100% - 20px); /* Breite abzüglich der Border-Breite anpassen */
-            }
-        }
+@media (max-width: 768px) {
+    main {
+        padding-top: 100px; /* Anpassung für kleinere Bildschirme */
+    }
+}
 
     </style>
 </head>
