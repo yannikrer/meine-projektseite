@@ -5,188 +5,246 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Kontakt</title>
+    <script src="script.js" type="text/javascript"></script>
+    <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/@emailjs/browser@4/dist/email.min.js"></script>
+    <script type="text/javascript">
+        (function(){
+            emailjs.init({publicKey: "2A6gTcI-TfYHO5eRv",});
+        })();
+    </script>
     <style>
         body {
-    display: flex;
-    flex-direction: column;
-    min-height: 100vh;
-    margin: 0;
-    font-family: Arial, sans-serif;
-}
+            display: flex;
+            flex-direction: column;
+            min-height: 100vh;
+            margin: 0;
+            font-family: Arial, sans-serif;
+        }
+        
+        header {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            z-index: 1000;
+            background-color: white;
+            padding: 20px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+        }
+        
+        .header-left {
+            display: flex;
+            align-items: center;
+        }
+        
+        .header-center {
+            flex: 1;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+        
+        .header-center form {
+            width: 100%;
+            max-width: 500px;
+        }
+        
+        .header-right {
+            display: flex;
+            align-items: center;
+            margin-right: 20px;
+        }
+        
+        main {
+            flex: 1;
+            padding-top: 120px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            width: 100%;
+        }
+        
+        header img {
+            width: 150px;
+            height: auto;
+            cursor: pointer;
+        }
+        
+        .cart-logo img {
+            width: 90px;
+            height: auto;
+            margin-right: 15px;
+            cursor: pointer;
+        }
+        
+        .search-bar {
+            border: none;
+            border-bottom: 2px solid black;
+            outline: none;
+            padding: 5px;
+            width: 100%;
+            font-size: 16px;
+        }
+        
+        .container {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: space-between;
+            max-width: 1600px;
+            margin: 0 auto;
+        }
+        
+        .shirt-item {
+            margin: 10px;
+            padding: 10px;
+            width: 23%;
+            text-align: center;
+            transition: transform 0.3s;
+            position: relative;
+            cursor: pointer;
+        }
+        
+        .shirt-item:hover {
+            transform: scale(1.05);
+        }
+        
+        .shirt-item img {
+            max-width: 100%;
+            height: auto;
+            display: block;
+        }
+        
+        .shirt-item .bild2 {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            opacity: 0;
+            transition: opacity 0.3s;
+        }
+        
+        .shirt-item:hover .bild2 {
+            opacity: 1;
+        }
+        
+        .shirt-item h2,
+        .shirt-item p {
+            margin: 10px 0;
+            position: relative;
+            z-index: 1;
+        }
+        
+        footer {
+            background-color: white;
+            color: #000;
+            padding: 20px 0;
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: space-between;
+            align-items: flex-start;
+            width: 100%;
+            border-top: 1px solid #ddd;
+        }
+        
+        .footer-section {
+            padding: 10px;
+            flex: 1;
+            min-width: 150px;
+            text-align: center;
+        }
+        
+        .footer-bottom {
+            background-color: #fff;
+            padding: 5px 0;
+            width: 100%;
+            text-align: center;
+            color: #aaa;
+            border-top: 1px solid #ddd;
+            background-color: black;
+        }
+        
+        .footerimage img {
+            width: 100px;
+        }
+        
+        .social-links a {
+            margin: 0 5px;
+        }
+        
+        .social-links img {
+            width: 30px;
+            height: auto;
+        }
+        
+        ul {
+            list-style-type: none;
+            padding: 0;
+            margin: 0;
+        }
+        
+        ul a {
+            padding: 5px 10px;
+            text-decoration: none;
+            color: #000;
+            font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+        }
+        
+        .payment img {
+            width: 50%;
+            height: auto;
+            margin-top: 20px;
+        }
 
-header {
-    position: fixed;
-    top: 0;
-    left: 0;
-    width: 100%;
-    z-index: 1000;
-    background-color: white;
-    padding: 20px;
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
-}
+        .input-container {
+            background-color: #f0f0f0; /* Hellgraue Hintergrundfarbe */
+            padding: 20px; /* Innenabstand für den Container */
+            border-radius: 5px; /* Abgerundete Ecken für den Container */
+            width: 100%;
+            max-width: 500px; /* Maximale Breite für das responsive Verhalten */
+            margin: 0 auto; /* Zentriert den Container horizontal */
+            box-sizing: border-box; /* Berücksichtigt padding und border in der Gesamtbreite */
+            margin-top: 80px; /* Abstand zum Header, der 80px hoch ist */
+        }
 
-.header-left {
-    display: flex;
-    align-items: center;
-}
+        /* CSS für die Input-Felder im Formular */
 
-.header-center {
-    flex: 1;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-}
+        .input-container input[type="text"],
+        .input-container input[type="email"],
+        .input-container textarea {
+            padding: 10px;
+            margin-bottom: 15px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            width: calc(100% - 22px); /* Breite abzüglich der Border-Breite */
+            font-size: 16px;
+        }
 
-.header-center form {
-    width: 100%;
-    max-width: 500px;
-}
+        .input-container input[type="text"]:focus,
+        .input-container input[type="email"]:focus,
+        .input-container textarea:focus {
+            outline: none;
+            border-color: #66afe9;
+            box-shadow: 0 0 5px #66afe9;
+        }
 
-.header-right {
-    display: flex;
-    align-items: center;
-    margin-right: 20px;
-}
+        /* Media Query für responsives Verhalten */
 
-main {
-    flex: 1;
-    padding: 20px;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    margin-top: 80px; /* Adjusted margin to ensure content doesn't go under header */
-}
+        @media (max-width: 768px) {
+            .input-container {
+                padding: 10px; /* Kleinere Polsterung für bessere Darstellung auf kleinen Bildschirmen */
+                margin-top: 60px; /* Weniger Abstand zum Header bei kleineren Bildschirmen */
+            }
 
-header img {
-    width: 150px;
-    height: auto;
-    cursor: pointer;
-}
-
-.cart-logo img {
-    width: 90px;
-    height: auto;
-    margin-right: 15px;
-    cursor: pointer;
-}
-
-.search-bar {
-    border: none;
-    border-bottom: 2px solid black;
-    outline: none;
-    padding: 5px;
-    width: 100%;
-    font-size: 16px;
-}
-
-.contact-form {
-    max-width: 700px;
-    width: 100%;
-    background-color: #f9f9f9;
-    padding: 20px;
-    border-radius: 10px;
-    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-}
-
-.contact-form h2 {
-    margin-bottom: 20px;
-    font-size: 24px;
-}
-
-.contact-form label {
-    display: block;
-    margin-bottom: 5px;
-    font-weight: bold;
-}
-
-.contact-form input,
-.contact-form textarea {
-    width: 100%;
-    padding: 10px;
-    margin-bottom: 20px;
-    border: 1px solid #ddd;
-    border-radius: 5px;
-}
-
-.contact-form button {
-    padding: 10px 20px;
-    background-color: black;
-    color: white;
-    border: none;
-    border-radius: 5px;
-    cursor: pointer;
-}
-
-footer {
-    background-color: white;
-    color: #000;
-    padding: 20px 0;
-    display: flex;
-    flex-wrap: wrap;
-    justify-content: space-between;
-    align-items: flex-start;
-    width: 100%;
-    border-top: 1px solid #ddd;
-}
-
-.footer-section {
-    padding: 10px;
-    flex: 1;
-    min-width: 150px;
-    text-align: center;
-}
-
-.footer-bottom {
-    background-color: #fff;
-    padding: 5px 0;
-    width: 100%;
-    text-align: center;
-    color: #aaa;
-    border-top: 1px solid #ddd;
-    background-color: black;
-}
-
-.footerimage img {
-    width: 100px;
-}
-
-.social-links a {
-    margin: 0 5px;
-}
-
-.social-links img {
-    width: 30px;
-    height: auto;
-}
-
-/* Media Queries */
-@media (max-width: 768px) {
-    .header-center form {
-        max-width: 400px;
-    }
-}
-
-@media (max-width: 480px) {
-    .header-center form {
-        max-width: 300px;
-    }
-
-    .contact-form {
-        padding: 15px;
-    }
-
-    .contact-form h2 {
-        font-size: 20px;
-    }
-
-    main {
-        margin-top: 100px; /* Increase margin to prevent content from being hidden under header */
-    }
-}
-
+            .input-container input[type="text"],
+            .input-container input[type="email"],
+            .input-container textarea {
+                width: calc(100% - 20px); /* Breite abzüglich der Border-Breite anpassen */
+            }
+        }
 
     </style>
 </head>
@@ -196,30 +254,22 @@ footer {
         <div class="header-left">
             <a href="index.html"><img src="images/logo.png" alt="Logo"></a>
         </div>
-        <div class="header-center">
-            <form action="#" method="GET">
-                <input type="text" name="query" class="search-bar" placeholder="Suche...">
-            </form>
-        </div>
         <div class="header-right">
             <a href="cart.html" class="cart-logo"><img src="images/warenkorb.png" alt="Warenkorb"></a>
         </div>
     </header>
-    <main>
-        <form class="contact-form" action="send_contact.php" method="POST">
-            <h2>Kontaktieren Sie uns</h2>
-            <label for="name">Name:</label>
-            <input type="text" id="name" name="name" required>
 
-            <label for="email">E-Mail:</label>
-            <input type="email" id="email" name="email" required>
+    <div class="header-center">
+        <div class="input-container">
+            <form id="contactForm">
+                <input type="text" id="fullname" name="fullname" placeholder="Vorname Nachname" required><br>
+                <input type="email" id="email_id" name="email_id" placeholder="Email ID" required><br>
+                <textarea id="message" name="message" placeholder="Nachricht" required></textarea><br>
+                <button type="button" onclick="SendMail()">Senden</button>
+            </form>
+        </div>
+    </div>
 
-            <label for="message">Nachricht:</label>
-            <textarea id="message" name="message" rows="6" required></textarea>
-
-            <button type="submit">Senden</button>
-        </form>
-    </main>
     <footer>
         <div class="footer-section social-media">
             <h2>Folge uns</h2>
@@ -230,14 +280,15 @@ footer {
             </div>
         </div>
         <div class="footer-section contact">
-            <h2>Kontakt</h2>
+            <h2><a href="contact.html" style="text-decoration: none; color: inherit;">Kontakt</a></h2>
             <p>Email: info@tshirtshop.com</p>
             <p>Service Nummer: +41 78 751 88 89</p>
         </div>
         <div class="footer-section payment">
-            <img src="images/Zahlungsmoeglichkeiten.png">
+            <img src="images/Zahlungsmoeglichkeiten.png" alt="Zahlungsmöglichkeiten">
         </div>
     </footer>
+    
     <div class="footer-bottom">
         &copy; 2024 Dein Shop. Alle Rechte vorbehalten.
     </div>
