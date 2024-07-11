@@ -13,7 +13,7 @@
             margin: 0;
             font-family: Arial, sans-serif;
         }
-    
+        
         header {
             position: fixed;
             top: 0;
@@ -27,30 +27,30 @@
             align-items: center;
             box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
         }
-    
+        
         .header-left {
             display: flex;
             align-items: center;
         }
-    
+        
         .header-center {
             flex: 1;
             display: flex;
             justify-content: center;
             align-items: center;
         }
-    
+        
         .header-center form {
             width: 100%;
             max-width: 500px;
         }
-    
+        
         .header-right {
             display: flex;
             align-items: center;
             margin-right: 20px;
         }
-    
+        
         main {
             flex: 1;
             padding-top: 120px;
@@ -59,20 +59,20 @@
             align-items: center;
             width: 100%;
         }
-    
+        
         header img {
             width: 150px;
             height: auto;
             cursor: pointer;
         }
-    
+        
         .cart-logo img {
             width: 90px;
             height: auto;
             margin-right: 15px;
             cursor: pointer;
         }
-    
+        
         .search-bar {
             border: none;
             border-bottom: 2px solid black;
@@ -82,7 +82,7 @@
             font-size: 16px;
             max-width: 500px; /* Begrenzung der Suchleiste auf maximal 500px Breite */
         }
-    
+        
         .container {
             display: flex;
             flex-wrap: wrap;
@@ -91,7 +91,7 @@
             margin: 0 auto;
             padding: 0 20px; /* Außenabstand für den Inhalt hinzugefügt */
         }
-    
+        
         .shirt-item {
             margin: 10px;
             padding: 10px;
@@ -101,17 +101,17 @@
             position: relative;
             cursor: pointer;
         }
-    
+        
         .shirt-item:hover {
             transform: scale(1.05);
         }
-    
+        
         .shirt-item img {
             max-width: 100%;
             height: auto;
             display: block;
         }
-    
+        
         .shirt-item .bild2 {
             position: absolute;
             top: 0;
@@ -121,18 +121,18 @@
             opacity: 0;
             transition: opacity 0.3s;
         }
-    
+        
         .shirt-item:hover .bild2 {
             opacity: 1;
         }
-    
+        
         .shirt-item h2,
         .shirt-item p {
             margin: 10px 0;
             position: relative;
             z-index: 1;
         }
-    
+        
         footer {
             background-color: white;
             color: #000;
@@ -144,14 +144,14 @@
             width: 100%;
             border-top: 1px solid #ddd;
         }
-    
+        
         .footer-section {
             padding: 10px;
             flex: 1;
             min-width: 150px;
             text-align: center;
         }
-    
+        
         .footer-bottom {
             background-color: #fff;
             padding: 5px 0;
@@ -161,39 +161,39 @@
             border-top: 1px solid #ddd;
             background-color: black;
         }
-    
+        
         .footerimage img {
             width: 100px;
         }
-    
+        
         .social-links a {
             margin: 0 5px;
         }
-    
+        
         .social-links img {
             width: 30px;
             height: auto;
         }
-    
+        
         ul {
             list-style-type: none;
             padding: 0;
             margin: 0;
         }
-    
+        
         ul a {
             padding: 5px 10px;
             text-decoration: none;
             color: #000;
             font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
         }
-    
+        
         .payment img {
             width: 50%;
             height: auto;
             margin-top: 20px;
         }
-    
+        
         .product-details {
             display: flex;
             max-width: 1200px;
@@ -202,39 +202,39 @@
             padding: 20px; /* Innenabstand für den Produktbereich hinzugefügt */
             box-sizing: border-box; /* Box-Sizing zur Berücksichtigung von Padding und Border hinzugefügt */
         }
-    
+        
         .product-image {
             padding: 20px;
             text-align: center;
             flex: 1;
         }
-    
+        
         .product-image img {
             max-width: 100%;
             height: auto;
         }
-    
+        
         .product-info {
             padding: 20px;
             text-align: left;
             flex: 1;
         }
-    
+        
         .product-info h1 {
             font-size: 24px;
             margin-bottom: 20px;
         }
-    
+        
         .product-info p {
             margin: 5px 0;
         }
-    
+        
         .size-buttons {
             display: flex;
             flex-wrap: wrap;
             margin: 10px 0;
         }
-    
+        
         .size-button {
             padding: 10px 20px;
             margin: 5px;
@@ -242,12 +242,12 @@
             border: 1px solid #ddd;
             cursor: pointer;
         }
-    
+        
         .size-button.selected {
             background-color: #000;
             color: #fff;
         }
-    
+        
         .add-to-cart {
             margin-top: 20px;
             display: block;
@@ -259,7 +259,7 @@
             font-weight: bold;
             cursor: pointer;
         }
-    
+        
         @media (max-width: 1200px) {
             .shirt-item {
                 width: 100%;
@@ -267,7 +267,7 @@
                 margin: 20px auto;
             }
         }
-    
+        
         @media (max-width: 768px) {
             .shirt-item {
                 width: 100%;
@@ -275,28 +275,27 @@
                 margin: 10px auto;
             }
         }
-    
+        
         @media (max-width: 480px) {
             header img {
                 width: 120px;
             }
-    
+        
             .cart-logo img {
                 width: 70px;
             }
-    
+        
             .product-details {
                 flex-direction: column;
                 padding: 10px; /* Innenabstand verringert, um den Platz auf kleineren Bildschirmen besser zu nutzen */
             }
-    
+        
             .product-image,
             .product-info {
                 width: 100%;
             }
         }
     </style>
-    
 </head>
 
 <body>
@@ -337,7 +336,7 @@
                             <button type="button" class="size-button" id="size-button-L" onclick="selectSize('L')">L</button>
                             <button type="button" class="size-button" id="size-button-XL" onclick="selectSize('XL')">XL</button>
                         </div>
-                        <a href="#" class="add-to-cart" onclick="addToCart()">In den Warenkorb</a>
+                        <button type="button" class="add-to-cart" onclick="addToCart()">In den Warenkorb</button>
                     </form>
                 </div>
             </div>
@@ -345,29 +344,33 @@
     </main>
 
     <footer>
-        <div class="footer-section social-media">
-            <h2>Folge uns</h2>
+        <div class="footer-section">
+            <h3>About Us</h3>
+            <p>Information about the company.</p>
+        </div>
+        <div class="footer-section">
+            <h3>Contact</h3>
+            <p>Email: info@example.com</p>
+        </div>
+        <div class="footer-section footerimage">
+            <img src="images/Original-Logo.png" alt="Logo">
+        </div>
+        <div class="footer-section">
+            <h3>Follow Us</h3>
             <div class="social-links">
-                <a href="https://twitter.com"><img src="images/twitter.jpg" alt="Twitter"></a>
-                <a href="https://www.tiktok.com"><img src="images/tiktok.jpg" alt="TikTok"></a>
-                <a href="https://www.instagram.com"><img src="images/instagram.jpg" alt="Instagram"></a>
+                <a href="#"><img src="images/facebook.png" alt="Facebook"></a>
+                <a href="#"><img src="images/instagram.png" alt="Instagram"></a>
+                <a href="#"><img src="images/twitter.png" alt="Twitter"></a>
             </div>
         </div>
-        <div class="footer-section contact">
-            <h2>Kontakt</h2>
-            <p>Email: info@tshirtshop.com</p>
-            <p>Service Nummer: +41 78 751 88 89</p>
-        </div>
         <div class="footer-section payment">
-            <img src="images/Zahlungsmoeglichkeiten.png">
+            <img src="images/payment_methods.png" alt="Payment Methods">
+        </div>
+        <div class="footer-bottom">
+            <p>&copy; 2023 Your Company. All rights reserved.</p>
         </div>
     </footer>
 
-    <div class="footer-bottom">
-        &copy; 2024 Dein Shop. Alle Rechte vorbehalten.
-    </div>
-
-    <script src="js/shirts.js"></script>
     <script>
         document.addEventListener('DOMContentLoaded', () => {
             const selectedShirt = JSON.parse(localStorage.getItem('selectedShirt'));
@@ -393,8 +396,20 @@
             const form = document.getElementById('add-to-cart-form');
             const formData = new FormData(form);
 
-            // Hier kannst du die Daten an deinen Backend-Service senden oder die Warenkorb-Funktionalität implementieren
-            // Beispiel: fetch('/api/add-to-cart', { method: 'POST', body: formData })
+            const shirt = JSON.parse(localStorage.getItem('selectedShirt'));
+            shirt.size = formData.get('size');
+            shirt.quantity = parseInt(formData.get('quantity'), 10);
+
+            let cart = JSON.parse(localStorage.getItem('cart')) || [];
+            const existingItemIndex = cart.findIndex(item => item.id === shirt.id && item.size === shirt.size);
+
+            if (existingItemIndex > -1) {
+                cart[existingItemIndex].quantity += shirt.quantity;
+            } else {
+                cart.push(shirt);
+            }
+
+            localStorage.setItem('cart', JSON.stringify(cart));
             alert('Das Produkt wurde dem Warenkorb hinzugefügt.');
         }
     </script>
