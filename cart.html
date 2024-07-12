@@ -6,7 +6,6 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Dein Warenkorb</title>
     <style>
-        /* Globale Styles */
         body {
             display: flex;
             flex-direction: column;
@@ -58,7 +57,7 @@
             padding: 5px;
             width: 100%;
             font-size: 16px;
-            max-width: 500px; /* Begrenzung der Suchleiste auf maximal 500px Breite */
+            max-width: 500px; 
         }
 
         .header-right {
@@ -209,8 +208,8 @@
             max-width: 1200px;
             width: 100%;
             flex-direction: row;
-            padding: 20px; /* Innenabstand für den Produktbereich hinzugefügt */
-            box-sizing: border-box; /* Box-Sizing zur Berücksichtigung von Padding und Border hinzugefügt */
+            padding: 20px; 
+            box-sizing: border-box; 
         }
 
         .product-image {
@@ -280,31 +279,31 @@
 
         @media (max-width: 768px) {
             .header-left img {
-                width: 100px; /* Kleinere Logogröße */
+                width: 100px; 
             }
 
             .search-bar {
-                max-width: 100%; /* Suchleiste über die gesamte Breite */
+                max-width: 100%; 
             }
 
             .shirt-item {
-                width: 100%; /* Über die gesamte Breite */
-                max-width: 100%; /* Maximalbreite entfernen */
+                width: 100%; 
+                max-width: 100%; 
                 margin: 10px auto;
             }
 
             .product-details {
-                flex-direction: column; /* Auf mobilen Geräten vertikal anordnen */
-                padding: 10px; /* Innerer Abstand reduziert */
+                flex-direction: column; 
+                padding: 10px; 
             }
 
             .footer-section {
-                text-align: center; /* Zentrierte Fußzeile */
+                text-align: center; 
                 margin-bottom: 20px;
             }
 
             .social-links a {
-                margin: 5px; /* Kleinerer Abstand zwischen den Social Media Icons */
+                margin: 5px; 
             }
         }
 
@@ -319,7 +318,7 @@
 
             .product-details {
                 flex-direction: column;
-                padding: 10px; /* Innenabstand verringert, um den Platz auf kleineren Bildschirmen besser zu nutzen */
+                padding: 10px; 
             }
 
             .product-image,
@@ -335,11 +334,7 @@
         <div class="header-left">
             <a href="index.html"><img src="images/logo.png" alt="Logo"></a>
         </div>
-        <div class="header-center">
-            <form action="#" method="GET">
-                <input type="text" name="query" class="search-bar" placeholder="Suche...">
-            </form>
-        </div>
+
         <div class="header-right">
             <a href="cart.html" class="cart-logo"><img src="images/warenkorb.png" alt="Warenkorb"></a>
         </div>
@@ -349,7 +344,6 @@
     <main>
         <div class="container">
             <div class="cart-items">
-                <!-- Hier werden die Warenkorb-Elemente dynamisch eingefügt -->
             </div>
             <div class="total-section">
                 <h2>Gesamtsumme</h2>
@@ -384,10 +378,8 @@
 
     <script>
         document.addEventListener('DOMContentLoaded', () => {
-            // Laden des Warenkorbs aus dem Local Storage
             const cart = JSON.parse(localStorage.getItem('cart')) || [];
 
-            // Funktion zur Anzeige der Warenkorb-Elemente
             function displayCartItems() {
                 const cartContainer = document.querySelector('.cart-items');
                 cartContainer.innerHTML = '';
@@ -412,11 +404,9 @@
                     cartContainer.appendChild(cartItem);
                 });
 
-                // Anzeige der Gesamtsumme
                 displayTotal();
             }
 
-            // Funktion zum Entfernen eines Artikels aus dem Warenkorb
             window.removeFromCart = function (itemId) {
                 const itemIndex = cart.findIndex(item => item.id === itemId);
                 if (itemIndex !== -1) {
@@ -426,7 +416,6 @@
                 }
             };
 
-            // Funktion zur Aktualisierung der Artikelmenge im Warenkorb
             window.updateQuantity = function (itemId, newQuantity) {
                 const itemIndex = cart.findIndex(item => item.id === itemId);
                 if (itemIndex !== -1) {
@@ -436,19 +425,15 @@
                 }
             };
 
-            // Funktion zur Anzeige der Gesamtsumme
             function displayTotal() {
                 const totalPrice = cart.reduce((total, item) => total + (item.price * item.quantity), 0);
                 document.getElementById('total-price').textContent = `Gesamt: ${totalPrice.toFixed(2)}€`;
             }
 
-            // Funktion für den Checkout
             window.checkout = function () {
                 alert('Zur Kasse gehen!');
-                // Hier könnten weitere Logiken für den Checkout implementiert werden
             };
 
-            // Initialisierung der Warenkorb-Anzeige
             displayCartItems();
         });
     </script>

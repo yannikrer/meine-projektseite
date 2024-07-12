@@ -265,32 +265,61 @@
     <script>
         document.addEventListener('DOMContentLoaded', () => {
             const shirtsContainer = document.getElementById('shirts-container');
-
+    
             if (shirts.length === 0) {
                 shirtsContainer.innerHTML = '<p>Keine Shirts gefunden.</p>';
             } else {
-                shirts.forEach((shirt, index) => {
-                    const shirtItem = document.createElement('div');
-                    shirtItem.className = 'shirt-item';
-                    shirtItem.innerHTML = `
-                        <a href="details.html" onclick="selectShirt(${index})">
-                            <img src="${shirt.image}" alt="${shirt.name}" class="bild1">
-                        </a>
-                        <h2>${shirt.name}</h2>
-                        <p>${shirt.season}</p>
-                        <p>${shirt.player}</p>
-                        <p>Preis: ${shirt.price}€</p>
-                    `;
-                    shirtsContainer.appendChild(shirtItem);
+                displayShirts(shirts);
+            }
+    
+            // Suchfunktion
+            const searchForm = document.getElementById('search-form');
+            const searchInput = document.getElementById('search-input');
+    
+            if (searchForm) {
+                searchForm.addEventListener('submit', function(event) {
+                    event.preventDefault(); // Verhindert das tatsächliche Absenden des Formulars
+    
+                    const query = searchInput.value.trim().toLowerCase();
+                    const filteredShirts = shirts.filter(shirt =>
+                        shirt.name.toLowerCase().includes(query)
+                    );
+    
+                    shirtsContainer.innerHTML = '';
+    
+                    if (filteredShirts.length === 0) {
+                        shirtsContainer.innerHTML = '<p>Keine Shirts gefunden.</p>';
+                    } else {
+                        displayShirts(filteredShirts);
+                    }
                 });
             }
         });
-
+    
+        function displayShirts(shirtsToDisplay) {
+            const shirtsContainer = document.getElementById('shirts-container');
+    
+            shirtsToDisplay.forEach((shirt, index) => {
+                const shirtItem = document.createElement('div');
+                shirtItem.className = 'shirt-item';
+                shirtItem.innerHTML = `
+                    <a href="details.html" onclick="selectShirt(${index})">
+                        <img src="${shirt.image}" alt="${shirt.name}" class="bild1">
+                    </a>
+                    <h2>${shirt.name}</h2>
+                    <p>${shirt.season}</p>
+                    <p>${shirt.player}</p>
+                    <p>Preis: ${shirt.price}€</p>
+                `;
+                shirtsContainer.appendChild(shirtItem);
+            });
+        }
+    
         function selectShirt(index) {
             const selectedShirt = shirts[index];
             localStorage.setItem('selectedShirt', JSON.stringify(selectedShirt));
         }
-    </script>
+    </script> 
 </body>
 
 </html>
