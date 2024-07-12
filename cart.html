@@ -4,16 +4,8 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Kontakt</title>
-    <script src="script.js" type="text/javascript"></script>
-    <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/@emailjs/browser@4/dist/email.min.js"></script>
-    <script type="text/javascript">
-        (function(){
-            emailjs.init({publicKey: "2A6gTcI-TfYHO5eRv"});
-        })();
-    </script>
+    <title>Dein Warenkorb</title>
     <style>
-        /* Global styles */
         body {
             display: flex;
             flex-direction: column;
@@ -21,8 +13,16 @@
             margin: 0;
             font-family: Arial, sans-serif;
         }
-        
-        /* Header styles */
+
+        .container {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+
         header {
             position: fixed;
             top: 0;
@@ -36,27 +36,20 @@
             align-items: center;
             box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
         }
-        
+
         .header-left img {
-            width: 150px; /* Adjust logo size */
+            width: 150px;
             height: auto;
             cursor: pointer;
         }
-        
-        .header-right {
-            display: flex;
-            align-items: center;
-            margin-right: 20px;
-        }
-        
+
         .header-center {
             flex: 1;
             display: flex;
             justify-content: center;
             align-items: center;
-            padding-top: 100px; /* Adjust padding for center alignment */
         }
-        
+
         .search-bar {
             border: none;
             border-bottom: 2px solid black;
@@ -64,10 +57,85 @@
             padding: 5px;
             width: 100%;
             font-size: 16px;
-            max-width: 500px; /* Limit search bar width */
+            max-width: 500px; 
         }
-        
-        /* Footer styles */
+
+        .header-right {
+            display: flex;
+            align-items: center;
+            margin-right: 20px;
+        }
+
+        .cart-logo img {
+            width: 90px;
+            height: auto;
+            margin-right: 15px;
+            cursor: pointer;
+        }
+
+        main {
+            flex: 1;
+            padding-top: 120px;
+            width: 100%;
+        }
+
+        .cart-items {
+            width: 100%;
+            max-width: 800px;
+        }
+
+        .cart-item {
+            display: flex;
+            align-items: center;
+            border-bottom: 1px solid #ddd;
+            padding: 10px;
+        }
+
+        .cart-item img {
+            width: 80px;
+            height: auto;
+            margin-right: 20px;
+        }
+
+        .cart-item-info {
+            flex: 1;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .cart-item-info p {
+            margin: 5px 0;
+        }
+
+        .quantity-input {
+            width: 50px;
+            margin: 0 10px;
+            text-align: center;
+        }
+
+        .remove-button {
+            background-color: #f44336;
+            color: white;
+            border: none;
+            padding: 5px 10px;
+            margin-left: 10px;
+            cursor: pointer;
+        }
+
+        .total-section {
+            margin-top: 20px;
+            text-align: right;
+            padding: 20px;
+            border-top: 1px solid #ddd;
+            width: 100%;
+            max-width: 800px;
+        }
+
+        .total-section p {
+            margin: 5px 0;
+        }
+
         footer {
             background-color: white;
             color: #000;
@@ -97,6 +165,10 @@
             background-color: black;
         }
         
+        .footerimage img {
+            width: 100px;
+        }
+        
         .social-links a {
             margin: 0 5px;
         }
@@ -119,58 +191,167 @@
             font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
         }
         
-        /* Responsive adjustments */
+        .payment img {
+            width: 50%;
+            height: auto;
+            margin-top: 20px;
+        }
+        s
+        .payment img {
+            width: 50%;
+            height: auto;
+            margin-top: 20px;
+        }
+
+        .product-details {
+            display: flex;
+            max-width: 1200px;
+            width: 100%;
+            flex-direction: row;
+            padding: 20px; 
+            box-sizing: border-box; 
+        }
+
+        .product-image {
+            padding: 20px;
+            text-align: center;
+            flex: 1;
+        }
+
+        .product-image img {
+            max-width: 100%;
+            height: auto;
+        }
+
+        .product-info {
+            padding: 20px;
+            text-align: left;
+            flex: 1;
+        }
+
+        .product-info h1 {
+            font-size: 24px;
+            margin-bottom: 20px;
+        }
+
+        .product-info p {
+            margin: 5px 0;
+        }
+
+        .size-buttons {
+            display: flex;
+            flex-wrap: wrap;
+            margin: 10px 0;
+        }
+
+        .size-button {
+            padding: 10px 20px;
+            margin: 5px;
+            background-color: #f0f0f0;
+            border: 1px solid #ddd;
+            cursor: pointer;
+        }
+
+        .size-button.selected {
+            background-color: #000;
+            color: #fff;
+        }
+
+        .add-to-cart {
+            margin-top: 20px;
+            display: block;
+            padding: 10px 20px;
+            background-color: black;
+            color: white;
+            text-align: center;
+            text-decoration: none;
+            font-weight: bold;
+            cursor: pointer;
+        }
+
+        @media (max-width: 1200px) {
+            .shirt-item {
+                width: 100%;
+                max-width: 600px;
+                margin: 20px auto;
+            }
+        }
+
         @media (max-width: 768px) {
-            .input-container {
-                padding: 10px;
-            }
-            
-            .input-container button {
-                padding: 8px 16px;
-                font-size: 14px;
-            }
-            
             .header-left img {
-                width: 100px; /* Adjust logo size for smaller screens */
+                width: 100px; 
             }
-            
+
             .search-bar {
-                max-width: 100%; /* Allow full width for search bar on smaller screens */
+                max-width: 100%; 
+            }
+
+            .shirt-item {
+                width: 100%; 
+                max-width: 100%; 
+                margin: 10px auto;
+            }
+
+            .product-details {
+                flex-direction: column; 
+                padding: 10px; 
+            }
+
+            .footer-section {
+                text-align: center; 
+                margin-bottom: 20px;
+            }
+
+            .social-links a {
+                margin: 5px; 
+            }
+        }
+
+        @media (max-width: 480px) {
+            header img {
+                width: 120px;
+            }
+
+            .cart-logo img {
+                width: 70px;
+            }
+
+            .product-details {
+                flex-direction: column;
+                padding: 10px; 
+            }
+
+            .product-image,
+            .product-info {
+                width: 100%;
             }
         }
     </style>
 </head>
 
 <body>
-    
     <header>
         <div class="header-left">
             <a href="index.html"><img src="images/logo.png" alt="Logo"></a>
-        </div>
-
-        <div class="header-center">
-            <div class="input-container">
-                <form id="contactForm">
-                    <input type="text" id="fullname" name="fullname" placeholder="Vorname Nachname" required><br>
-                    <input type="email" id="email_id" name="email_id" placeholder="Email ID" required><br>
-                    <select id="subject" name="subject" required>
-                        <option value="">Wähle einen Betreff aus</option>
-                        <option value="Bestellung">Bestellung</option>
-                        <option value="Frage zum Produkt">Frage zum Produkt</option>
-                        <option value="Sonstiges">Sonstiges</option>
-                    </select><br>
-                    <textarea id="message" name="message" placeholder="Nachricht" required></textarea><br>
-                    <button type="button" onclick="SendMail()">Senden</button>
-                </form>
-            </div>
         </div>
 
         <div class="header-right">
             <a href="cart.html" class="cart-logo"><img src="images/warenkorb.png" alt="Warenkorb"></a>
         </div>
     </header>
+    
 
-    <!-- Restliche Seite hier einfügen -->
+    <main>
+        <div class="container">
+            <div class="cart-items">
+            </div>
+            <div class="total-section">
+                <h2>Gesamtsumme</h2>
+                <p id="total-price"></p>
+                <button class="checkout-button" onclick="checkout()">Zur Kasse gehen</button>
+            </div>
+        </div>
+    </main>
 
     <footer>
         <div class="footer-section social-media">
@@ -196,17 +377,65 @@
     </div>
 
     <script>
-        function SendMail() {
-            var params = {
-                from_name: document.getElementById("fullname").value,
-                email_id: document.getElementById("email_id").value,
-                subject: document.getElementById("subject").value,
-                message: document.getElementById("message").value
+        document.addEventListener('DOMContentLoaded', () => {
+            const cart = JSON.parse(localStorage.getItem('cart')) || [];
+
+            function displayCartItems() {
+                const cartContainer = document.querySelector('.cart-items');
+                cartContainer.innerHTML = '';
+
+                cart.forEach(item => {
+                    const cartItem = document.createElement('div');
+                    cartItem.classList.add('cart-item');
+                    cartItem.innerHTML = `
+                        <img src="${item.image}" alt="${item.name}">
+                        <div class="cart-item-info">
+                            <div>
+                                <h3>${item.name}</h3>
+                                <p>Größe: ${item.size}</p>
+                                <p>Preis pro Stück: ${item.price}€</p>
+                            </div>
+                            <div class="cart-item-actions">
+                                <input type="number" class="quantity-input" value="${item.quantity}" min="1" onchange="updateQuantity(${item.id}, this.value)">
+                                <button class="remove-button" onclick="removeFromCart(${item.id})">Entfernen</button>
+                            </div>
+                        </div>
+                    `;
+                    cartContainer.appendChild(cartItem);
+                });
+
+                displayTotal();
+            }
+
+            window.removeFromCart = function (itemId) {
+                const itemIndex = cart.findIndex(item => item.id === itemId);
+                if (itemIndex !== -1) {
+                    cart.splice(itemIndex, 1);
+                    localStorage.setItem('cart', JSON.stringify(cart));
+                    displayCartItems();
+                }
             };
-            emailjs.send("service_vgzvb3h", "template_uu1wour", params).then(function (res) {
-                alert("Deine Email wurde erfolgreich versendet... " + res.status);
-            });
-        }
+
+            window.updateQuantity = function (itemId, newQuantity) {
+                const itemIndex = cart.findIndex(item => item.id === itemId);
+                if (itemIndex !== -1) {
+                    cart[itemIndex].quantity = parseInt(newQuantity, 10);
+                    localStorage.setItem('cart', JSON.stringify(cart));
+                    displayTotal();
+                }
+            };
+
+            function displayTotal() {
+                const totalPrice = cart.reduce((total, item) => total + (item.price * item.quantity), 0);
+                document.getElementById('total-price').textContent = `Gesamt: ${totalPrice.toFixed(2)}€`;
+            }
+
+            window.checkout = function () {
+                alert('Zur Kasse gehen!');
+            };
+
+            displayCartItems();
+        });
     </script>
 </body>
 
