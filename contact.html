@@ -207,24 +207,27 @@
             max-width: 500px;
             margin: 0 auto; 
             box-sizing: border-box; 
-            margin-top: 180px; 
+            margin-top: 130px; 
         }
-
 
         .input-container input[type="text"],
         .input-container input[type="email"],
-        .input-container textarea {
+        .input-container textarea,
+        .input-container select { 
             padding: 10px;
             margin-bottom: 15px;
             border: 1px solid #ccc;
             border-radius: 5px;
             width: calc(100% - 22px); 
             font-size: 16px;
+            font-family: Arial, sans-serif; 
+            color: #333;
         }
 
         .input-container input[type="text"]:focus,
         .input-container input[type="email"]:focus,
-        .input-container textarea:focus {
+        .input-container textarea:focus,
+        .input-container select:focus { 
             outline: none;
             border-color: #66afe9;
             box-shadow: 0 0 5px #66afe9;
@@ -259,16 +262,24 @@
         </div>
     </header>
 
-    <div class="header-center">
+    <main>
         <div class="input-container">
             <form id="contactForm">
                 <input type="text" id="fullname" name="fullname" placeholder="Vorname Nachname" required><br>
-                <input type="email" id="email_id" name="email_id" placeholder="Email ID" required><br>
+                <input type="email" id="email_id" name="email_id" placeholder="Email" required><br>
+                <select id="subject" name="subject" required>
+                    <option value="">Wähle einen Betreff aus</option>
+                    <option value="Bestellung">Beschwerde</option>
+                    <option value="Frage zum Produkt">Frage zum Produkt</option>
+                    <option value="Feedback">Feedback</option>
+                    <option value="Sonstiges">Sonstiges</option>
+                </select><br>
                 <textarea id="message" name="message" placeholder="Nachricht" required></textarea><br>
                 <button type="button" onclick="SendMail()">Senden</button>
             </form>
         </div>
-    </div>
+    </main>
+
 
     <footer>
         <div class="footer-section social-media">
